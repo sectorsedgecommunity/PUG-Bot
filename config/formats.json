@@ -1,0 +1,30 @@
+[
+    {
+        "id": "setostatic",
+        "name": "Static (with SETO matchmaking)",
+        "mode": "sta",
+        "maps": [
+            {
+                "name": "Grass Arena A", 
+                "code": "arena1"
+            },
+            {
+                "name": "Grass Arena B", 
+                "code": "arena2"
+            },
+            {
+                "name": "Lava Arena A", 
+                "code": "arena3"
+            },
+            {
+                "name": "Lava Arena B", 
+                "code": "arena4"
+            },
+            {
+                "name": "Ice Arena A", 
+                "code": "arena5"
+            }
+        ],
+        "seto": true
+    }
+]

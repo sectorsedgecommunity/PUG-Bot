@@ -1,0 +1,23 @@
+{
+  "name": "pug-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot to help host Sector's Edge PUGs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SE-Tournament-Organization/PUG-Bot.git"
+  },
+  "author": "Sector's Edge Tournament Organization",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SE-Tournament-Organization/PUG-Bot/issues"
+  },
+  "homepage": "https://github.com/SE-Tournament-Organization/PUG-Bot#readme",
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1"
+  }
+}
