@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SE-Tournament-Organization/PUG-Bot.git"
+    "url": "git+https://github.com/sectorsedgecommunity/PUG-Bot.git"
   },
   "author": "Sector's Edge Tournament Organization",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SE-Tournament-Organization/PUG-Bot/issues"
+    "url": "https://github.com/sectorsedgecommunity/PUG-Bot/issues"
   },
-  "homepage": "https://github.com/SE-Tournament-Organization/PUG-Bot#readme",
+  "homepage": "https://github.com/sectorsedgecommunity/PUG-Bot#readme",
   "dependencies": {
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1"
