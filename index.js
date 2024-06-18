@@ -5,6 +5,8 @@ const client = new Client({intents: [GatewayIntentBits.GuildMembers]});
 client.login(process.env.TOKEN);
 
 const setup = require("./bot/setup.js");
+const state = require("./lib/state.js");
+state.set("client", client);
 
 client.on(Events.ClientReady, () => {
     console.log("Bot connected to Discord");

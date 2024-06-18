@@ -1,6 +1,7 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
 const formats = require("../config/formats.json");
 const state = require("../lib/state.js");
+const startPug = require("./startpug.js");
 
 module.exports = {
     createPug: async (interaction) => {
@@ -64,6 +65,7 @@ module.exports = {
                 })
             
             await interaction.reply("PUG announced! Registration has now opened. This channel will be used to communicate with admins during the PUG.");
+            startPug.scheduleCronJob();
         }
     },
     register: async (interaction) => {
