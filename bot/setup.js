@@ -4,8 +4,8 @@ const state = require("../lib/state.js");
 
 module.exports = {
     createPug: async (interaction) => {
-        let pugCreated = state.get("pugCreated");
-        if (pugCreated == true) {
+        let pugStatus = state.get("pugStatus");
+        if (pugStatus !== "none") {
             await interaction.reply("A PUG is already in progress!"); 
         }
 
@@ -17,7 +17,7 @@ module.exports = {
             let teamSize = interaction.options.getInteger("teamsize");
             let regions = interaction.options.getString("regions");
             
-            state.set("pugCreated", true);
+            state.set("pugStatus", "registration");
             state.set("pugName", name);
             state.set("startTimestamp", timestamp);
             state.set("announceChannel", channel);
@@ -67,11 +67,11 @@ module.exports = {
         }
     },
     register: async (interaction) => {
-        let pugCreated = state.get("pugCreated");
-        if (pugCreated == false) {
+        let pugStatus = state.get("pugStatus");
+        if (pugStatus == "none") {
             await interaction.reply({ content: "There is no active PUG to register for!", ephemeral: true }); 
         }
-        else {
+        else if (pugStatus == "registration") {
             let playerList = state.get("registered");
             let ids = playerList.map(p => p.id);
             let regions = state.get("regions");
@@ -109,14 +109,17 @@ module.exports = {
                 message.edit(`Currently registered: \`${playerList.length}\``);
             }
         }
+        else {
+            await interaction.reply({ content: "Sorry, registration for the PUG has closed.", ephemeral: true }); 
+        }
     },
     registerWithRegion: async (interaction) => {
         let chosenRegion = interaction.values[0]
-        let pugCreated = state.get("pugCreated");
-        if (pugCreated == false) {
+        let pugStatus = state.get("pugStatus");
+        if (pugStatus == "none") {
             await interaction.reply({ content: "There is no active PUG to register for!", ephemeral: true }); 
         }
-        else {
+        else if (pugStatus == "registration") {
             let playerList = state.get("registered");
             let ids = playerList.map(p => p.id);
             if (ids.includes(interaction.user.id)) {
@@ -130,13 +133,16 @@ module.exports = {
                 message.edit(`Currently registered: \`${playerList.length}\``);
             }
         }
+        else {
+            await interaction.reply({ content: "Sorry, registration for the PUG has closed.", ephemeral: true }); 
+        }
     },
     unregister: async (interaction) => {
-        let pugCreated = state.get("pugCreated");
-        if (pugCreated == false) {
+        let pugStatus = state.get("pugStatus");
+        if (pugStatus == "none") {
             await interaction.reply({ content: "There is no active PUG to register for!", ephemeral: true }); 
         }
-        else {
+        else if (pugStatus == "registration") {
             let playerList = state.get("registered");
             let ids = playerList.map(p => p.id);
             if (ids.includes(interaction.user.id)) {
@@ -151,6 +157,9 @@ module.exports = {
             else {
                 await interaction.reply({ content: "You haven't registered for the current PUG.", ephemeral: true });
             }
+        }
+        else {
+            await interaction.reply({ content: "You may not unregister now as registration has closed. Contact the admins if you wish to leave the PUG.", ephemeral: true }); 
         }
     }
 }
