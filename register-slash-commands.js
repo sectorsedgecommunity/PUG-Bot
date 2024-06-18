@@ -36,8 +36,23 @@ let pug = new SlashCommandBuilder()
         option.setName('teamsize')
             .setDescription('The team size. Set to 0 to decide when the PUG starts.')
             .setRequired(true))
+    .addStringOption(option =>
+        option.setName('regions')
+            .setDescription('A comma separated list (no spaces) of the available server regions.')
+            .setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
 commands.push(pug.toJSON());
+
+let register = new SlashCommandBuilder()
+    .setName('register')
+    .setDescription('Register for the current PUG.')
+commands.push(register.toJSON());
+
+let unregister = new SlashCommandBuilder()
+    .setName('unregister')
+    .setDescription('Unregister from the current PUG.')
+commands.push(unregister.toJSON());
+
 
 const rest = new REST().setToken(process.env.TOKEN);
 
